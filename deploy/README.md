@@ -1,15 +1,13 @@
-# Winnie Closed-Source Deployment
+# Winnie Deployment
 
-This folder is the customer-facing deployment bundle. It pulls prebuilt Winnie images
-from a private registry and does not require the source repository.
+This folder is the customer-facing deployment bundle.
 
 ## Files to Deliver
 
 - `docker-compose.yml`
 - `.env.example`
 
-The customer copies `.env.example` to `.env`, fills in passwords and image names,
-then starts the stack.
+The customer copies `.env.example` to `.env`, fills in passwords, then starts the stack.
 
 For a single Docker Hub repository named `gorillablasters/winnie`, use image tags
 like:
