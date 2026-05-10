@@ -253,6 +253,7 @@ h3 {
   border-radius: 0.8rem;
   background: rgba(255, 255, 255, 0.82);
   box-shadow: 0 10px 30px rgba(30, 27, 75, 0.08);
+  align-content: center;
 }
 
 .feature-grid article {
@@ -372,10 +373,29 @@ h3 {
 }
 
 .code-card {
-  width: min(42rem, 100%);
+  width: min(51rem, 100%);
   margin: 1.5rem auto 1rem;
-  padding: 1rem;
+  padding: 1.25rem;
   overflow-x: auto;
+  border: 1px solid rgba(124, 58, 237, 0.16);
+  border-radius: 1rem;
+  background: rgba(17, 16, 24, 0.96);
+  box-shadow: 0 20px 45px rgba(17, 16, 24, 0.16);
+}
+
+.code-card pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.code-card code {
+  display: block;
+  color: #f8f8ff;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.75;
 }
 
 code {
