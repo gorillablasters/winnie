@@ -1,0 +1,55 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-winnie}
+      POSTGRES_USER: ${POSTGRES_USER:-winnie}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+    volumes:
+      - winnie-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-winnie} -d ${POSTGRES_DB:-winnie}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  migrate:
+    image: ${WINNIE_API_IMAGE:?WINNIE_API_IMAGE is required}
+    restart: "no"
+    environment:
+      POSTGRES_DSN: postgresql://${POSTGRES_USER:-winnie}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-winnie}
+      DEMO_DATA: ${DEMO_DATA:-false}
+      RESET_APP_DATA: ${RESET_APP_DATA:-false}
+    command: ["python", "/app/database/scripts/migrate.pyc"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  api:
+    image: ${WINNIE_API_IMAGE:?WINNIE_API_IMAGE is required}
+    restart: unless-stopped
+    environment:
+      APP_ENV: production
+      POSTGRES_DSN: postgresql://${POSTGRES_USER:-winnie}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-winnie}
+    ports:
+      - "${WINNIE_API_PORT:-8080}:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+
+  dashboard:
+    image: ${WINNIE_DASHBOARD_IMAGE:?WINNIE_DASHBOARD_IMAGE is required}
+    restart: unless-stopped
+    environment:
+      NEXT_PUBLIC_API_BASE: ${NEXT_PUBLIC_API_BASE:-http://localhost:8080}
+    ports:
+      - "${WINNIE_DASHBOARD_PORT:-3000}:3000"
+    depends_on:
+      api:
+        condition: service_started
+
+volumes:
+  winnie-postgres:

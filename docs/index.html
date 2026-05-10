@@ -138,9 +138,15 @@
         <p class="eyebrow">Ready for V1</p>
         <h2>Run Winnie locally, load demo data, and start exploring.</h2>
         <div class="code-card" aria-label="Docker compose quick start command">
-          <code>docker compose up --build -d api dashboard</code>
+          <code>git clone https://github.com/gorillablaster/winnie.git && cd winnie</code>
         </div>
-        <p class="muted">For demo mode, set <code>DEMO_DATA</code> to <code>true</code> in compose before running migrations.</p>
+        <div class="code-card" aria-label="Docker compose quick start command">
+          <code>cp .env.example .env # Edit the .env file to set your desired configuration</code>
+        </div>
+        <div class="code-card" aria-label="Docker compose quick start command">
+          <code>docker login && docker compose --env-file deploy/.env -f deploy/docker-compose.yml up -d</code>
+        </div>
+        <p class="muted">For demo mode, set <code>DEMO_DATA</code> to <code>true</code> in <code>.env</code>.</p>
       </section>
     </main>
 
