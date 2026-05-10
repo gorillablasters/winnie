@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Winnie is a sleek financial analytics workspace for personal portfolios and small businesses."
+    />
+    <title>Winnie | Smarter Financial Analytics</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Winnie home">
+        <img src="./assets/logo.png" alt="" />
+        <span>
+          <strong>Winnie</strong>
+          <small>Financial Analytics</small>
+        </span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#product">Product</a>
+        <a href="#screens">Screens</a>
+        <a href="#security">Access</a>
+        <a href="#start">Start</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Portfolio intelligence for real decisions</p>
+          <h1>Smarter, clearer financial analysis for people and small teams.</h1>
+          <p class="lede">
+            Winnie turns statement uploads into visual cashflow, forecasts, entity comparisons,
+            and scoped collaboration so you can understand where money moved and what may happen next.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#screens">See the dashboard</a>
+            <a class="button secondary" href="./README.md">Read the docs</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="Winnie product preview">
+          <img class="logo-card" src="./assets/logo.png" alt="Winnie logo" />
+          <img class="product-shot" src="./assets/overview-screenshot.png" alt="Winnie overview dashboard screenshot" />
+        </div>
+      </section>
+
+      <section id="product" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Built around financial workflow</p>
+          <h2>From raw statements to useful dashboard signals.</h2>
+        </div>
+        <div class="feature-grid">
+          <article>
+            <span class="feature-icon">01</span>
+            <h3>Upload and normalize</h3>
+            <p>Parse CSV and PDF bank statements into a consistent transaction schema ready for analytics.</p>
+          </article>
+          <article>
+            <span class="feature-icon">02</span>
+            <h3>Forecast cashflow</h3>
+            <p>Use rolling averages, deltas, and projections to estimate future balances across useful periods.</p>
+          </article>
+          <article>
+            <span class="feature-icon">03</span>
+            <h3>Compare entities</h3>
+            <p>See household, business, and other entities side by side across income, expenses, and trends.</p>
+          </article>
+          <article>
+            <span class="feature-icon">04</span>
+            <h3>Control access</h3>
+            <p>Grant owner, stakeholder, or viewer access at the portfolio, entity, or account level.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="screens" class="section screenshots">
+        <div class="section-heading">
+          <p class="eyebrow">Screenshots</p>
+          <h2>A dashboard that stays analytical without feeling sterile.</h2>
+        </div>
+        <div class="screen-list">
+          <article class="screen-card">
+            <div>
+              <p class="eyebrow">Overview</p>
+              <h3>Balance, cashflow, and projections in one place.</h3>
+              <p>See the selected portfolio, entity, or account with quick metrics and visual trend context.</p>
+            </div>
+            <img src="./assets/overview-screenshot.png" alt="Winnie overview dashboard screenshot" />
+          </article>
+          <article class="screen-card reverse">
+            <div>
+              <p class="eyebrow">Manage</p>
+              <h3>Structure portfolios and grant precise access.</h3>
+              <p>Owners can create portfolios, entities, and accounts, then grant access exactly where it belongs.</p>
+            </div>
+            <img src="./assets/manage-screenshot.png" alt="Winnie manage access screenshot" />
+          </article>
+          <article class="screen-card">
+            <div>
+              <p class="eyebrow">Compare</p>
+              <h3>Find the differences between entities.</h3>
+              <p>Compare cashflow, category mix, balances, and insight summaries across entities.</p>
+            </div>
+            <img src="./assets/compare-screenshot.png" alt="Winnie entity comparison screenshot" />
+          </article>
+        </div>
+      </section>
+
+      <section id="security" class="section access-band">
+        <div>
+          <p class="eyebrow">Scoped collaboration</p>
+          <h2>Designed for owners, stakeholders, and viewers.</h2>
+          <p>
+            Winnie separates full ownership from contributor-style access and read-only views.
+            Users only see and modify what they have been granted.
+          </p>
+        </div>
+        <div class="role-grid">
+          <article>
+            <h3>Owner</h3>
+            <p>Full portfolio control, access management, and all entity/account operations.</p>
+          </article>
+          <article>
+            <h3>Stakeholder</h3>
+            <p>Can work inside granted scope, including entities or accounts they own or were assigned.</p>
+          </article>
+          <article>
+            <h3>Viewer</h3>
+            <p>Read-only dashboard access with no add, edit, remove, or grant actions.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="start" class="section cta">
+        <p class="eyebrow">Ready for V1</p>
+        <h2>Run Winnie locally, load demo data, and start exploring.</h2>
+        <div class="code-card" aria-label="Docker compose quick start command">
+          <code>docker compose up --build -d api dashboard</code>
+        </div>
+        <p class="muted">For demo mode, set <code>DEMO_DATA</code> to <code>true</code> in compose before running migrations.</p>
+      </section>
+    </main>
+
+    <footer>
+      <span>Winnie</span>
+      <span>Smarter financial decisions, made visual.</span>
+    </footer>
+  </body>
+</html>
