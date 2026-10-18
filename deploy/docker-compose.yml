@@ -32,6 +32,11 @@ services:
     environment:
       APP_ENV: production
       POSTGRES_DSN: postgresql://${POSTGRES_USER:-winnie}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-winnie}
+      ADVISOR_PROVIDER: ${ADVISOR_PROVIDER:-ollama}
+      OLLAMA_BASE_URL: http://ollama:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.2:1b}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-5.5}
     ports:
       - "${WINNIE_API_PORT:-8080}:8080"
     depends_on:
@@ -39,6 +44,14 @@ services:
         condition: service_healthy
       migrate:
         condition: service_completed_successfully
+
+  ollama:
+    image: ${OLLAMA_IMAGE:-ollama/ollama:latest}
+    restart: unless-stopped
+    volumes:
+      - winnie-ollama:/root/.ollama
+    ports:
+      - "127.0.0.1:${OLLAMA_PORT:-11434}:11434"
 
   dashboard:
     image: ${WINNIE_DASHBOARD_IMAGE:?WINNIE_DASHBOARD_IMAGE is required}
@@ -53,3 +66,4 @@ services:
 
 volumes:
   winnie-postgres:
+  winnie-ollama:

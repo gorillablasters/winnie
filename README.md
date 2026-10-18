@@ -52,3 +52,25 @@ docker compose --env-file .env up -d
 ```
 
 Migrations run automatically before the API starts.
+
+## CPA Assistant
+
+The conversational assistant uses local Ollama by default. Start the updated stack, then download the configured model once:
+
+```bash
+docker compose --env-file .env up -d ollama
+docker compose --env-file .env exec ollama ollama pull llama3.2:1b
+docker compose --env-file .env up -d api dashboard
+```
+
+Choose another local model with `OLLAMA_MODEL`. Ollama answers do not include live IRS retrieval, so the UI labels them as unsourced local explanations.
+
+To use OpenAI with live web search restricted to IRS and USA.gov instead, set:
+
+```env
+ADVISOR_PROVIDER=openai
+OPENAI_API_KEY=your-project-api-key
+OPENAI_MODEL=gpt-5.5
+```
+
+The key is provided only to the API container. The dashboard never receives it. Both providers receive aggregate record totals rather than raw statements or transaction descriptions. OpenAI mode disables response storage and limits tax-source search to IRS and USA.gov pages.
